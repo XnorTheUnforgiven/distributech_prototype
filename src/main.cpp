@@ -7,7 +7,18 @@ Last edit:          21-02-2020
 */
 
 #include <iostream>
+
+#include "include\distributech\cli.h"
  
 int main() {
-  std::cout << "Hello World\n";
+  try {
+
+    DistributechCli cli;
+    cli.run();
+  }
+  catch(...) {
+    std::cout << "Exiting program!";
+  }
+
+  exit(0);
 }
