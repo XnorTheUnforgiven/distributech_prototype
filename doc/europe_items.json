@@ -1,0 +1,55 @@
+{
+    "rows": {
+        "1": {
+            "coffee": 1.00,
+            "cappucino": 2.10,
+            "macchiato": 2.10,
+            "expresso": 1.45,
+            "chai_latte": 1.85,
+            "hot_chocolate": 0.90
+        },
+        "2": {
+            "cheetos_1": 1.00,
+            "cheetos_2": 1.05,
+            "cheetos_3": 1.10,
+            "cheetos_4": 1.15,
+            "cheetos_5": 1.20,
+            "cheetos_6": 1.25
+        },
+        "3": {
+            "mountain_dew_1": 2.00,
+            "mountain_dew_2": 2.05,
+            "mountain_dew_3": 2.10,
+            "mountain_dew_4": 2.15,
+            "mountain_dew_5": 2.20,
+            "mountain_dew_6": 2.25
+        },
+        "4": {
+            "chicken_nuggets_1": 0.10,
+            "chicken_nuggets_2": 0.15,
+            "chicken_nuggets_3": 0.20,
+            "chicken_nuggets_4": 0.95,
+            "chicken_nuggets_5": 100.00,
+            "chicken_nuggets_6": 200.15
+        },
+        "5": {
+            "beef_jerky_1": 0.50,
+            "beef_jerky_2": 0.55,
+            "beef_jerky_3": 0.60,
+            "beef_jerky_4": 0.65,
+            "beef_jerky_5": 0.90,
+            "beef_jerky_6": 0.90
+        },
+        "6": {
+            "banana_cake": 1.50,
+            "carrot_cake": 1.50,
+            "chocolate_cake": 1.50,
+            "lemon_cake": 1.50,
+            "orange_cake": 1.50,
+            "moka_cake": 1.50
+        }
+    },
+    "acceptedCurrency": [
+        "EU"
+    ]
+}
