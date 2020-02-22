@@ -31,6 +31,10 @@ DistributechCli::DistributechCli():
     _acceptedUserTypes.push_front("customer");
     _acceptedUserTypes.push_front("employee");
     _acceptedUserTypes.push_front("technician");
+
+    _acceptedRegionTypes.push_front("eu");
+    _acceptedRegionTypes.push_front("can");
+    _acceptedRegionTypes.push_front("us");
 }
 
 /********************************************************************
@@ -144,7 +148,7 @@ void DistributechCli::_askForRegion() {
 
     // Show user menu
     std::cout << "Which region is the Distributech machine from?"  << std::endl;
-    std::cout << "Type either EU (for Europe), CAN (for Canada) or US (for United-States)"  << std::endl;
+    std::cout << "Type either eu (for Europe), can (for Canada) or us (for United-States)"  << std::endl;
 
     // Capture user input and validate it is a known user
     std::cin >> regionType;
@@ -157,7 +161,7 @@ void DistributechCli::_askForRegion() {
     }
 
     if (_regionType == "UNKNOWN"){
-        std::cout << "Unknown region type, exiting program..."  << std::endl;
+        std::cout << "Unknown region type..."  << std::endl;
         throw;
     }
 

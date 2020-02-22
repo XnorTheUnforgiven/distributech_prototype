@@ -31,6 +31,7 @@ class DistributechCli
         void _askForRegion();
 
         list<string> _acceptedUserTypes;
+        list<string> _acceptedRegionTypes;
         string _userType;
         string _regionType;
 
