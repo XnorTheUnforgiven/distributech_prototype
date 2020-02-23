@@ -1,13 +1,13 @@
 /*
 Name:               abstract.h
-Description:        Distributech machine abstract structures
+Description:        Distributech machine structures
 Author:             Xavier Mercure-Gagnon
 Date of creation:   21-02-2020
 Last edit:          21-02-2020
 */
 
-#ifndef DISTRIBUTECH_ABSTRACT_H
-#define DISTRIBUTECH_ABSTRACT_H
+#ifndef DISTRIBUTECH_H
+#define DISTRIBUTECH_H
 
 #include <string>
 #include <list>

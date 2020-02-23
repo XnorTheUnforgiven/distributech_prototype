@@ -1,18 +1,18 @@
 /*
 Name:               cli.h
-Description:        Cli interface for distributech
+Description:        Cli interface manager
 Author:             Xavier Mercure-Gagnon
 Date of creation:   21-02-2020
 Last edit:          21-02-2020
 */
 
-#ifndef DISTRIBUTECH_CLI_H
-#define DISTRIBUTECH_CLI_H
+#ifndef CLI_H
+#define CLI_H
 
 #include <string>
 #include <list>
 
-#include "include\distributech\specialUsers.h"
+#include "include\specialUsers.h"
 
 using std::string;
 using std::list;

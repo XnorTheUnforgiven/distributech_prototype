@@ -1,6 +1,6 @@
 /*
 Name:               abstract.cpp
-Description:        Distributech machine abstract structures
+Description:        Distributech machine structures
 Author:             Xavier Mercure-Gagnon
 Date of creation:   21-02-2020
 Last edit:          21-02-2020
@@ -12,7 +12,7 @@ Last edit:          21-02-2020
 
 #include <lib\nlohmann\json.hpp>
 
-#include "include\distributech\abstract.h"
+#include "include\abstract.h"
 
 using std::string;
 using std::ifstream;

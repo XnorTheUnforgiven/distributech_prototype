@@ -1,6 +1,6 @@
 /*
-Name:               cli.cpp
-Description:        Cli interface for distributech
+Name:               specialUsers.cpp
+Description:        Components managing special users
 Author:             Xavier Mercure-Gagnon
 Date of creation:   21-02-2020
 Last edit:          21-02-2020
@@ -12,7 +12,7 @@ Last edit:          21-02-2020
 
 #include <lib\nlohmann\json.hpp>
 
-#include "include\distributech\specialUsers.h"
+#include "include\specialUsers.h"
 
 using std::string;
 using std::ifstream;

@@ -6,8 +6,8 @@ Date of creation:   22-02-2020
 Last edit:          22-02-2020
 */
 
-#ifndef DISTRIBUTECH_SPECIAL_USERS_H
-#define DISTRIBUTECH_SPECIAL_USERS_H
+#ifndef SPECIAL_USERS_H
+#define SPECIAL_USERS_H
 
 #include <string>
 

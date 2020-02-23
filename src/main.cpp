@@ -8,7 +8,7 @@ Last edit:          21-02-2020
 
 #include <iostream>
 
-#include "include\distributech\cli.h"
+#include "include\cli.h"
  
 int main() {
   try {

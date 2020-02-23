@@ -1,6 +1,6 @@
 /*
 Name:               cli.cpp
-Description:        Cli interface for distributech
+Description:        Cli interface
 Author:             Xavier Mercure-Gagnon
 Date of creation:   21-02-2020
 Last edit:          21-02-2020
@@ -10,7 +10,7 @@ Last edit:          21-02-2020
 #include <string>
 #include <exception>
 
-#include "include\distributech\cli.h"
+#include "include\cli.h"
 
 /********************************************************************
 Name:       
