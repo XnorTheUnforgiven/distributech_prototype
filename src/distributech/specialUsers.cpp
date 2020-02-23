@@ -18,7 +18,7 @@ using std::string;
 using std::ifstream;
 using json = nlohmann::json;
 
-const string DistributechSpecialUsers::_usersFilePath = "/doc/special_users.json";
+const string DistributechSpecialUsers::_usersFilePath = "..\\doc\\special_users.json";
 
 /********************************************************************
 Name:       
@@ -110,8 +110,6 @@ const bool DistributechSpecialUsers::isUserNameValid()
 
     json inputJsonData;
     inputFile >> inputJsonData;
-
-    std::cout << inputJsonData << '\n';
 
     bool userNameIsValid = false;
 

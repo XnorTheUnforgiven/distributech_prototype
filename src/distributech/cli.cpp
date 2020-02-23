@@ -115,19 +115,19 @@ void DistributechCli::_askForUserType() {
     std::cout << std::endl;
 
     // Capture user input and validate it is a known user
-    // std::cin >> userType;
+    std::cin >> userType;
 
-    // for ( std::list<string>::iterator it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
-    //     if (*it == userType) {
-    //         _userType = userType;
-    //         break;
-    //     }
-    // }
+    for ( std::list<string>::iterator it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
+        if (*it == userType) {
+            _userType = userType;
+            break;
+        }
+    }
 
-    // if (_userType == "UNKNOWN"){
-    //     std::cout << "Unknown user type, exiting program..."  << std::endl;
-    //     throw;
-    // }
+    if (_userType == "UNKNOWN"){
+        std::cout << "Unknown user type, exiting program..."  << std::endl;
+        throw;
+    }
 
     std::cout << std::endl;
 
@@ -155,7 +155,7 @@ void DistributechCli::_askForUserName() {
     std::cout << std::endl;
 
     // Capture user input and validate it is a known user
-    // std::cin >> userName;
+    std::cin >> userName;
 
     _specialUsers.init(_userType, userName);
     // Validates is a special user of any type, otherwise fallback to customer
