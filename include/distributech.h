@@ -24,15 +24,14 @@ class Distributech
 {
     public:
 
-        Distributech(const string itemsFilePath);
+        Distributech();
         ~Distributech();
         Distributech(const Distributech &ref);
 
+        void loadData(const string itemsFilePath);
         void displayItems();
 
     protected:
-        void _loadData(const string itemsFilePath);
-
         const static string _itemsFilePath;
         unsigned _rows;
         unsigned _itemsPerRows;

@@ -29,6 +29,8 @@ class Cli
         void run();
 
     private:
+        const static string _europeItemsFilePath;
+        const static string _northAmericaItemsFilePath;
 
         void _askForUserType();
         void _askForUserName();
@@ -41,6 +43,7 @@ class Cli
         string _regionType;
 
         SpecialUsers _specialUsers;
+        Distributech _distributech;
 
         // Customer specific
         void _displayItemSelection();

@@ -30,9 +30,8 @@ Returns:
 Exception:
 
 *********************************************************************/
-Distributech::Distributech(const string itemsFilePath)
+Distributech::Distributech()
 {
-    _loadData(itemsFilePath);
 }
 
 /********************************************************************
@@ -79,7 +78,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void Distributech::_loadData(const string itemsFilePath)
+void Distributech::loadData(const string itemsFilePath)
 {
     ifstream inputFile;
     inputFile.open(itemsFilePath);

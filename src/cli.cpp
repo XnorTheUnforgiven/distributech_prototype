@@ -12,6 +12,9 @@ Last edit:          21-02-2020
 
 #include "include\cli.h"
 
+const string Cli::_europeItemsFilePath = "..\\doc\\europe_items.json";
+const string Cli::_northAmericaItemsFilePath = "..\\doc\\northAmerica_items.json";
+
 /********************************************************************
 Name:       
 
@@ -89,6 +92,7 @@ void Cli::run() {
     _askForUserType();
     _askForUserName();
     _askForRegion();
+    _showItems();
 }
 
 /********************************************************************
@@ -107,7 +111,6 @@ void Cli::_askForUserType() {
 
     string userType;
 
-    // Show user type menu
     std::cout << "Which kind of user are you?"  << std::endl;
     std::cout << "For a customer user, type customer"  << std::endl;
     std::cout << "For an employee user with a key pass, type employee"  << std::endl;
@@ -116,7 +119,6 @@ void Cli::_askForUserType() {
 
     // Capture user input and validate it is a known user
     std::cin >> userType;
-
     for ( std::list<string>::iterator it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
         if (*it == userType) {
             _userType = userType;
@@ -150,13 +152,11 @@ void Cli::_askForUserName() {
 
     string userName;
 
-    // Show user name menu
     std::cout << "Use your keypass (aka what is your username)?"  << std::endl;
     std::cout << std::endl;
 
     // Capture user input and validate it is a known user
     std::cin >> userName;
-
     _specialUsers.init(_userType, userName);
     // Validates is a special user of any type, otherwise fallback to customer
     if(!_specialUsers.isUserNameValid()){
@@ -188,13 +188,11 @@ void Cli::_askForRegion() {
 
     string regionType;
 
-    // Show user menu
     std::cout << "Which region is the Distributech machine from?"  << std::endl;
     std::cout << "Type either eu (for Europe), can (for Canada) or us (for United-States)"  << std::endl;
 
     // Capture user input and validate it is a known user
     std::cin >> regionType;
-
     for ( std::list<string>::iterator it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
         if (*it == regionType) {
             _regionType = regionType;
@@ -212,7 +210,8 @@ void Cli::_askForRegion() {
 /********************************************************************
 Name:               _showItems
 
-Description:        Show the displayed items of the machine
+Description:        Show the displayed items of the region specific
+                    distributech machine
 
 Args:         
 
@@ -222,5 +221,19 @@ Exception:
 
 *********************************************************************/
 void Cli::_showItems() {
+    std::cout << "Displaying the machine's items!"  << std::endl;
+    std::cout << std::endl;
+
+    if (_regionType == "eu") {
+        _distributech.loadData(_europeItemsFilePath);
+    }
+    else if (_regionType == "can" || _regionType == "us") {
+        _distributech.loadData(_northAmericaItemsFilePath);
+    }
+    else {
+        throw;
+    }
+
+    _distributech.displayItems();
 
 }

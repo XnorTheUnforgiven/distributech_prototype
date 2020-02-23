@@ -4,7 +4,7 @@ project(Distributech VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(${PROJECT_NAME} src/main.cpp src/cli.cpp src/specialUsers.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/cli.cpp src/specialUsers.cpp src/distributech.cpp)
 
 target_include_directories(${PROJECT_NAME}  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 
