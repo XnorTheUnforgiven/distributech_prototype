@@ -13,17 +13,18 @@ Last edit:          21-02-2020
 #include <list>
 
 #include "include\specialUsers.h"
+#include "include\distributech.h"
 
 using std::string;
 using std::list;
 
-class DistributechCli
+class Cli
 {
     public:
 
-        DistributechCli();
-        ~DistributechCli();
-        DistributechCli(const DistributechCli &ref);
+        Cli();
+        ~Cli();
+        Cli(const Cli &ref);
 
         void run();
 
@@ -39,7 +40,7 @@ class DistributechCli
         string _userType;
         string _regionType;
 
-        DistributechSpecialUsers _specialUsers;
+        SpecialUsers _specialUsers;
 
         // Customer specific
         void _displayItemSelection();
