@@ -208,3 +208,19 @@ void DistributechCli::_askForRegion() {
     }
 
 }
+
+/********************************************************************
+Name:               _showItems
+
+Description:        Show the displayed items of the machine
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void DistributechCli::_showItems() {
+
+}

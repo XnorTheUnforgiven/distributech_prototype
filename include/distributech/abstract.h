@@ -9,18 +9,35 @@ Last edit:          21-02-2020
 #ifndef DISTRIBUTECH_ABSTRACT_H
 #define DISTRIBUTECH_ABSTRACT_H
 
+#include <string>
+#include <list>
+#include <map>
+
+using std::string;
+using std::list;
+using std::map;
+
+typedef list<map<unsigned,float>> Items;
+typedef map<unsigned,float> ItemsRow;
+
 class DistributechAbstract
 {
     public:
 
-        DistributechAbstract();
+        DistributechAbstract(const string itemsFilePath);
         ~DistributechAbstract();
         DistributechAbstract(const DistributechAbstract &ref);
 
+        void displayItems();
+
     protected:
+        void _loadData(const string itemsFilePath);
 
-    private:
+        const static string _itemsFilePath;
+        unsigned _rows;
+        unsigned _itemsPerRows;
 
+        Items _items;
 };
 
 #endif
