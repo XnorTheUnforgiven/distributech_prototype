@@ -10,15 +10,15 @@ Last edit:          21-02-2020
 #define DISTRIBUTECH_H
 
 #include <string>
-#include <list>
+#include <vector>
 #include <map>
 
 using std::string;
-using std::list;
+using std::vector;
 using std::map;
 
 typedef map<string,float> ItemsRow;
-typedef list<ItemsRow> Items;
+typedef vector<ItemsRow> Items;
 
 
 class Distributech
@@ -31,6 +31,7 @@ class Distributech
 
         void loadData(const string itemsFilePath, string region);
         void displayItems();
+        void displayItemPrice(unsigned row, string itemName);
 
     private:
         const static string _itemsFilePath;

@@ -19,6 +19,9 @@ using std::string;
 using std::ifstream;
 using json = nlohmann::json;
 
+using std::find;
+using std::to_string;
+
 /********************************************************************
 Name:       
 
@@ -132,13 +135,44 @@ void Distributech::displayItems()
     for (Items::iterator itemIt = _items.begin(); itemIt != _items.end(); ++itemIt) {
         ItemsRow itemRow = *itemIt;
         rowNumber = std::distance(_items.begin(), itemIt) + 1;
-        
+
         std::cout << "Row #" << rowNumber << ":   ";
         for (ItemsRow::iterator rowIt = itemRow.begin(); rowIt != itemRow.end(); ++rowIt) {
             std::cout << rowIt->first << "(" <<  rowIt->second << ")   ";
         }
         std::cout << std::endl;
     }
+}
+
+/********************************************************************
+Name:               getItemPriceStr
+
+Description:        Get the price of a specific item with currency
+                    in a string format
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void Distributech::displayItemPrice(unsigned row, string itemName)
+{
+    float price;
+
+    // Set price value display at 2 decimals
+    std::cout << std::fixed << std::setprecision(2);
+
+    ItemsRow itemsRow = _items.at(row);
+    if (itemsRow.find(itemName) == itemsRow.end() ) {
+        std::cout << "Item name "<< itemName <<" was not found in row #" << row << "!" << std::endl;
+        throw;
+    }
+
+    price = itemsRow.at(itemName);
+
+    std::cout << "Insert " << price << _currency << " to receive the item!" << std::endl;
 }
 
 /********************************************************************

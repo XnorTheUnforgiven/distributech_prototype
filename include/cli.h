@@ -42,6 +42,8 @@ class Cli
         list<string> _acceptedRegionTypes;
         string _userType;
         string _regionType;
+        string _selectedRow;
+        string _selectedItemInRow;
 
         SpecialUsers _specialUsers;
         Distributech _distributech;

@@ -13,13 +13,14 @@ Last edit:          21-02-2020
 #include "include\cli.h"
 
 using std::string;
+using std::stoul;
 
 // Debug paths
-//const string Cli::_europeItemsFilePath = "doc/europe_items.json";
-//const string Cli::_northAmericaItemsFilePath = "doc/north_america_items.json";
+const string Cli::_europeItemsFilePath = "doc/europe_items.json";
+const string Cli::_northAmericaItemsFilePath = "doc/north_america_items.json";
 // Release paths
-const string Cli::_europeItemsFilePath = "..\\doc\\europe_items.json";
-const string Cli::_northAmericaItemsFilePath = "..\\doc\\north_america_items.json";
+// const string Cli::_europeItemsFilePath = "..\\doc\\europe_items.json";
+// const string Cli::_northAmericaItemsFilePath = "..\\doc\\north_america_items.json";
 
 /********************************************************************
 Name:       
@@ -95,10 +96,11 @@ void Cli::run() {
     std::cout << std::endl;
     std::cout << "Welcome to the Distributech machine interface!" << std::endl;
     std::cout << std::endl;
-    _askForUserType();
-    _askForUserName();
-    _askForRegion();
+    // _askForUserType();
+    // _askForUserName();
+    // _askForRegion();
     _displayItems();
+    _askForUserSelection();
 }
 
 /********************************************************************
@@ -239,7 +241,7 @@ void Cli::_displayItems() {
     std::cout << "Displaying the machine's items!"  << std::endl;
     std::cout << std::endl;
 
-    //_regionType = "can";
+    _regionType = "eu";
 
     if (_regionType == "eu") {
         _distributech.loadData(_europeItemsFilePath, _regionType);
@@ -269,8 +271,23 @@ Exception:
 
 *********************************************************************/
 void Cli::_askForUserSelection() {
+
+    string selection;
+    string price;
+    string delimiter = "-";
+
     std::cout << std::endl;
     std::cout << "Which item will you be selecting?"  << std::endl;
+    std::cout << "Select it using row number and item name"  << std::endl;
+    std::cout << "Example: 1-chaiLatte"  << std::endl;
     std::cout << std::endl;
 
+    // std::cin >> selection;
+
+    selection = "1-chaiLatte";
+
+    _selectedRow = selection.substr(0, selection.find(delimiter));
+    _selectedItemInRow = selection.erase(0, selection.find(delimiter) + delimiter.length());
+
+    _distributech.displayItemPrice(stoul(_selectedRow) - 1, _selectedItemInRow);
 }
