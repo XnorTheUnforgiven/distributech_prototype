@@ -17,8 +17,9 @@ using std::string;
 using std::list;
 using std::map;
 
-typedef list<map<unsigned,float>> Items;
-typedef map<unsigned,float> ItemsRow;
+typedef map<string,float> ItemsRow;
+typedef list<ItemsRow> Items;
+
 
 class Distributech
 {
@@ -28,15 +29,15 @@ class Distributech
         ~Distributech();
         Distributech(const Distributech &ref);
 
-        void loadData(const string itemsFilePath);
+        void loadData(const string itemsFilePath, string region);
         void displayItems();
 
-    protected:
+    private:
         const static string _itemsFilePath;
-        unsigned _rows;
-        unsigned _itemsPerRows;
-
         Items _items;
+        string _currency;
+
+        string _regionToCurrency(string region);
 };
 
 #endif

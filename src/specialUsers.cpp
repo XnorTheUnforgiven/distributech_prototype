@@ -119,7 +119,6 @@ const bool SpecialUsers::isUserNameValid()
         //  iterate through user names to validate it is found in the config
         if(_userType == userTypeIt.key()) {
             for (json::iterator userNameIt = userTypeIt.value().begin(); userNameIt != userTypeIt.value().end(); ++userNameIt) {
-                std::cout << *userNameIt << '\n';
                 if(_userName == *userNameIt) {
                     userNameIsValid = true;
                 }

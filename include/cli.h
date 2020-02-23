@@ -35,7 +35,8 @@ class Cli
         void _askForUserType();
         void _askForUserName();
         void _askForRegion();
-        void _showItems();
+        void _displayItems();
+        void _askForUserSelection();
 
         list<string> _acceptedUserTypes;
         list<string> _acceptedRegionTypes;
@@ -44,11 +45,6 @@ class Cli
 
         SpecialUsers _specialUsers;
         Distributech _distributech;
-
-        // Customer specific
-        void _displayItemSelection();
-
-        // Employee with access card specific
 
         // Technician with access card specific
         void _enableDistribution(bool enable);

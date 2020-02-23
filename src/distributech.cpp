@@ -9,6 +9,7 @@ Last edit:          21-02-2020
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <iomanip>
 
 #include <lib\nlohmann\json.hpp>
 
@@ -69,7 +70,7 @@ Distributech::Distributech(const Distributech &ref)
 /********************************************************************
 Name:               loadData
 
-Description:        Loads the machine data iinto usable structures
+Description:        Loads the machine data into usable structures
 
 Args:         
 
@@ -78,7 +79,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void Distributech::loadData(const string itemsFilePath)
+void Distributech::loadData(const string itemsFilePath, const string region)
 {
     ifstream inputFile;
     inputFile.open(itemsFilePath);
@@ -90,17 +91,20 @@ void Distributech::loadData(const string itemsFilePath)
     json inputJsonData;
     inputFile >> inputJsonData;
 
-    // Iterate through rows of items to create a display of some sort
-    json rowsData = inputJsonData[0];
-    for (json::iterator rowIt = rowsData.begin(); rowIt != rowsData.end(); ++rowIt) {
+    // Iterate through rows of items to load data in a usable structure
+    for (json::iterator rowIt = inputJsonData.begin(); rowIt != inputJsonData.end(); ++rowIt) {
         json itemsData = rowIt.value();
 
         ItemsRow itemsRow;
         for (json::iterator itemIt = itemsData.begin(); itemIt != itemsData.end(); ++itemIt) {
-            itemsRow.emplace(itemIt.key(), itemIt.value());
+            string key = itemIt.key();
+            float value = itemIt.value();
+            itemsRow.emplace(key, value);
         }
         _items.push_back(itemsRow);
     }
+
+    _currency = _regionToCurrency(region);
 }
 
 /********************************************************************
@@ -117,11 +121,50 @@ Exception:
 *********************************************************************/
 void Distributech::displayItems()
 {
+    // Set price value display at 2 decimals
+    std::cout << std::fixed << std::setprecision(2);
+
+    std::cout << "Items prices are set in " << _currency << " currency."<< std::endl;
+    std::cout << std::endl;
+
+    // Display data into rows, including item name and price
+    unsigned rowNumber;
     for (Items::iterator itemIt = _items.begin(); itemIt != _items.end(); ++itemIt) {
         ItemsRow itemRow = *itemIt;
+        rowNumber = std::distance(_items.begin(), itemIt) + 1;
+        
+        std::cout << "Row #" << rowNumber << ":   ";
         for (ItemsRow::iterator rowIt = itemRow.begin(); rowIt != itemRow.end(); ++rowIt) {
-            std::cout << rowIt->first << "-" << rowIt->second << "   ";
+            std::cout << rowIt->first << "(" <<  rowIt->second << ")   ";
         }
         std::cout << std::endl;
     }
+}
+
+/********************************************************************
+Name:               _regionToCurrency
+
+Description:        Converts the region to the used currency and 
+                    returns the associated currency
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+string Distributech::_regionToCurrency(string region)
+{
+    if (region == "eu"){
+        return "EU";
+    }
+    else if (region == "can") {
+        return "CAD";
+    }
+    else if (region == "us") {
+        return "USD";
+    }
+    // Unhandled and unexpected region
+    throw;
 }

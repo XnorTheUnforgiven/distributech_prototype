@@ -12,8 +12,14 @@ Last edit:          21-02-2020
 
 #include "include\cli.h"
 
+using std::string;
+
+// Debug paths
+//const string Cli::_europeItemsFilePath = "doc/europe_items.json";
+//const string Cli::_northAmericaItemsFilePath = "doc/north_america_items.json";
+// Release paths
 const string Cli::_europeItemsFilePath = "..\\doc\\europe_items.json";
-const string Cli::_northAmericaItemsFilePath = "..\\doc\\northAmerica_items.json";
+const string Cli::_northAmericaItemsFilePath = "..\\doc\\north_america_items.json";
 
 /********************************************************************
 Name:       
@@ -92,7 +98,7 @@ void Cli::run() {
     _askForUserType();
     _askForUserName();
     _askForRegion();
-    _showItems();
+    _displayItems();
 }
 
 /********************************************************************
@@ -150,26 +156,33 @@ Exception:
 *********************************************************************/
 void Cli::_askForUserName() {
 
-    string userName;
+    // Skip if customer user
+    if (_userType != "customer") {
 
-    std::cout << "Use your keypass (aka what is your username)?"  << std::endl;
-    std::cout << std::endl;
+        string userName;
 
-    // Capture user input and validate it is a known user
-    std::cin >> userName;
-    _specialUsers.init(_userType, userName);
-    // Validates is a special user of any type, otherwise fallback to customer
-    if(!_specialUsers.isUserNameValid()){
-        _userType = "customer";
+        std::cout << "Use your keypass (aka what is your username)?"  << std::endl;
+        std::cout << std::endl;
+
+        // Capture user input and validate it is a known user
+        std::cin >> userName;
+        _specialUsers.init(_userType, userName);
+        // Validates is a special user of any type, otherwise fallback to customer
+        if(_specialUsers.isUserNameValid()){
+            std::cout << "Successfully logged as special user " << _userType << "!" << std::endl;
+        }
+        else {
+            std::cout << "Username not accepted as a special user, switching to customer user!"  << std::endl;
+            _userType = "customer";            
+        }
+
+        if (userName == "UNKNOWN"){
+            std::cout << "Unknown user name, exiting program..."  << std::endl;
+            throw;
+        }
+
+        std::cout << std::endl;
     }
-
-    if (userName == "UNKNOWN"){
-        std::cout << "Unknown user type, exiting program..."  << std::endl;
-        throw;
-    }
-
-    std::cout << std::endl;
-
 }
 
 /********************************************************************
@@ -190,10 +203,11 @@ void Cli::_askForRegion() {
 
     std::cout << "Which region is the Distributech machine from?"  << std::endl;
     std::cout << "Type either eu (for Europe), can (for Canada) or us (for United-States)"  << std::endl;
+    std::cout << std::endl;
 
     // Capture user input and validate it is a known user
     std::cin >> regionType;
-    for ( std::list<string>::iterator it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
+    for ( std::list<string>::iterator it = _acceptedRegionTypes.begin(); it != _acceptedRegionTypes.end(); ++it){
         if (*it == regionType) {
             _regionType = regionType;
             break;
@@ -205,10 +219,11 @@ void Cli::_askForRegion() {
         throw;
     }
 
+    std::cout << std::endl;
 }
 
 /********************************************************************
-Name:               _showItems
+Name:               _displayItems
 
 Description:        Show the displayed items of the region specific
                     distributech machine
@@ -220,20 +235,42 @@ Returns:
 Exception:
 
 *********************************************************************/
-void Cli::_showItems() {
+void Cli::_displayItems() {
     std::cout << "Displaying the machine's items!"  << std::endl;
     std::cout << std::endl;
 
+    //_regionType = "can";
+
     if (_regionType == "eu") {
-        _distributech.loadData(_europeItemsFilePath);
+        _distributech.loadData(_europeItemsFilePath, _regionType);
     }
     else if (_regionType == "can" || _regionType == "us") {
-        _distributech.loadData(_northAmericaItemsFilePath);
+        _distributech.loadData(_northAmericaItemsFilePath, _regionType);
     }
     else {
         throw;
     }
 
     _distributech.displayItems();
+
+}
+
+/********************************************************************
+Name:               _askForUserSelection
+
+Description:        Show the displayed items of the region specific
+                    distributech machine
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void Cli::_askForUserSelection() {
+    std::cout << std::endl;
+    std::cout << "Which item will you be selecting?"  << std::endl;
+    std::cout << std::endl;
 
 }
