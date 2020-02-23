@@ -13,7 +13,7 @@ Last edit:          21-02-2020
 int main() {
   try {
 
-    DistributechCli cli;
+    Cli cli;
     cli.run();
   }
   catch(...) {

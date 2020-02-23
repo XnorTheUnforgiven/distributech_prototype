@@ -13,13 +13,13 @@ Last edit:          22-02-2020
 
 using std::string;
 
-class DistributechSpecialUsers
+class SpecialUsers
 {
     public:
 
-        DistributechSpecialUsers();
-        ~DistributechSpecialUsers();
-        DistributechSpecialUsers(const DistributechSpecialUsers &ref);
+        SpecialUsers();
+        ~SpecialUsers();
+        SpecialUsers(const SpecialUsers &ref);
 
         bool isEmployee(string user);
         bool isTechnician(string user);

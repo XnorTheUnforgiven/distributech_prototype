@@ -20,13 +20,13 @@ using std::map;
 typedef list<map<unsigned,float>> Items;
 typedef map<unsigned,float> ItemsRow;
 
-class DistributechAbstract
+class Distributech
 {
     public:
 
-        DistributechAbstract(const string itemsFilePath);
-        ~DistributechAbstract();
-        DistributechAbstract(const DistributechAbstract &ref);
+        Distributech(const string itemsFilePath);
+        ~Distributech();
+        Distributech(const Distributech &ref);
 
         void displayItems();
 

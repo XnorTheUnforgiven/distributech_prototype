@@ -12,7 +12,7 @@ Last edit:          21-02-2020
 
 #include <lib\nlohmann\json.hpp>
 
-#include "include\abstract.h"
+#include "include\distributech.h"
 
 using std::string;
 using std::ifstream;
@@ -30,7 +30,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechAbstract::DistributechAbstract(const string itemsFilePath)
+Distributech::Distributech(const string itemsFilePath)
 {
     _loadData(itemsFilePath);
 }
@@ -47,7 +47,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechAbstract::~DistributechAbstract()
+Distributech::~Distributech()
 {
 }
 
@@ -63,7 +63,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechAbstract::DistributechAbstract(const DistributechAbstract &ref)
+Distributech::Distributech(const Distributech &ref)
 {
 }
 
@@ -79,7 +79,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void DistributechAbstract::_loadData(const string itemsFilePath)
+void Distributech::_loadData(const string itemsFilePath)
 {
     ifstream inputFile;
     inputFile.open(itemsFilePath);
@@ -116,7 +116,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void DistributechAbstract::displayItems()
+void Distributech::displayItems()
 {
     for (Items::iterator itemIt = _items.begin(); itemIt != _items.end(); ++itemIt) {
         ItemsRow itemRow = *itemIt;

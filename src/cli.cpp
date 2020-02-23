@@ -24,7 +24,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechCli::DistributechCli():
+Cli::Cli():
     _userType("UNKNOWN"),
     _regionType("UNKNOWN"),
     _specialUsers()
@@ -50,7 +50,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechCli::~DistributechCli()
+Cli::~Cli()
 {
 }
 
@@ -66,7 +66,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechCli::DistributechCli(const DistributechCli &ref)
+Cli::Cli(const Cli &ref)
 {
 }
 
@@ -82,7 +82,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void DistributechCli::run() {
+void Cli::run() {
     std::cout << std::endl;
     std::cout << "Welcome to the Distributech machine interface!" << std::endl;
     std::cout << std::endl;
@@ -103,7 +103,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void DistributechCli::_askForUserType() {
+void Cli::_askForUserType() {
 
     string userType;
 
@@ -146,7 +146,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void DistributechCli::_askForUserName() {
+void Cli::_askForUserName() {
 
     string userName;
 
@@ -184,7 +184,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void DistributechCli::_askForRegion() {
+void Cli::_askForRegion() {
 
     string regionType;
 
@@ -221,6 +221,6 @@ Returns:
 Exception:
 
 *********************************************************************/
-void DistributechCli::_showItems() {
+void Cli::_showItems() {
 
 }

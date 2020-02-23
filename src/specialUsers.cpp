@@ -18,7 +18,7 @@ using std::string;
 using std::ifstream;
 using json = nlohmann::json;
 
-const string DistributechSpecialUsers::_usersFilePath = "..\\doc\\special_users.json";
+const string SpecialUsers::_usersFilePath = "..\\doc\\special_users.json";
 
 /********************************************************************
 Name:       
@@ -32,7 +32,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechSpecialUsers::DistributechSpecialUsers()
+SpecialUsers::SpecialUsers()
 {
 }
 
@@ -48,7 +48,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechSpecialUsers::~DistributechSpecialUsers()
+SpecialUsers::~SpecialUsers()
 {
 }
 
@@ -64,7 +64,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-DistributechSpecialUsers::DistributechSpecialUsers(const DistributechSpecialUsers &ref)
+SpecialUsers::SpecialUsers(const SpecialUsers &ref)
 {
 }
 
@@ -80,7 +80,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-void DistributechSpecialUsers::init(string userType, string userName)
+void SpecialUsers::init(string userType, string userName)
 {
     _userType = userType;
     _userName = userName;
@@ -99,7 +99,7 @@ Returns:
 Exception:
 
 *********************************************************************/
-const bool DistributechSpecialUsers::isUserNameValid()
+const bool SpecialUsers::isUserNameValid()
 {
     ifstream inputFile;
     inputFile.open(_usersFilePath);
