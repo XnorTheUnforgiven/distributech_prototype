@@ -16,11 +16,11 @@ using std::string;
 using std::stoul;
 
 // Debug paths
-const string Cli::_europeItemsFilePath = "doc/europe_items.json";
-const string Cli::_northAmericaItemsFilePath = "doc/north_america_items.json";
+// const string Cli::_europeItemsFilePath = "doc/europe_items.json";
+// const string Cli::_northAmericaItemsFilePath = "doc/north_america_items.json";
 // Release paths
-// const string Cli::_europeItemsFilePath = "..\\doc\\europe_items.json";
-// const string Cli::_northAmericaItemsFilePath = "..\\doc\\north_america_items.json";
+const string Cli::_europeItemsFilePath = "..\\doc\\europe_items.json";
+const string Cli::_northAmericaItemsFilePath = "..\\doc\\north_america_items.json";
 
 /********************************************************************
 Name:       
@@ -96,9 +96,9 @@ void Cli::run() {
     std::cout << std::endl;
     std::cout << "Welcome to the Distributech machine interface!" << std::endl;
     std::cout << std::endl;
-    // _askForUserType();
-    // _askForUserName();
-    // _askForRegion();
+    _askForUserType();
+    _askForUserName();
+    _askForRegion();
     _displayItems();
     _askForUserSelection();
 }
@@ -282,12 +282,16 @@ void Cli::_askForUserSelection() {
     std::cout << "Example: 1-chaiLatte"  << std::endl;
     std::cout << std::endl;
 
-    // std::cin >> selection;
+    std::cin >> selection;
 
-    selection = "1-chaiLatte";
+    std::cout << std::endl;
+
+    //selection = "1-chaiLatte";
 
     _selectedRow = selection.substr(0, selection.find(delimiter));
     _selectedItemInRow = selection.erase(0, selection.find(delimiter) + delimiter.length());
 
     _distributech.displayItemPrice(stoul(_selectedRow) - 1, _selectedItemInRow);
+
+    std::cout << std::endl;
 }

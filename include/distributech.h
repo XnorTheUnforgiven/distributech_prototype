@@ -37,6 +37,8 @@ class Distributech
         const static string _itemsFilePath;
         Items _items;
         string _currency;
+        string _selectedItem;
+        float _selectedItemPrice;
 
         string _regionToCurrency(string region);
 };

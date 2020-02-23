@@ -159,7 +159,7 @@ Exception:
 *********************************************************************/
 void Distributech::displayItemPrice(unsigned row, string itemName)
 {
-    float price;
+    _selectedItem = itemName;
 
     // Set price value display at 2 decimals
     std::cout << std::fixed << std::setprecision(2);
@@ -170,9 +170,9 @@ void Distributech::displayItemPrice(unsigned row, string itemName)
         throw;
     }
 
-    price = itemsRow.at(itemName);
+    _selectedItemPrice = itemsRow.at(itemName);
 
-    std::cout << "Insert " << price << _currency << " to receive the item!" << std::endl;
+    std::cout << "Insert " << _selectedItemPrice << _currency << " to receive the item!" << std::endl;
 }
 
 /********************************************************************
