@@ -1,10 +1,10 @@
 {
-    "technicians": [
+    "technician": [
         "Bob",
         "Roger",
         "Pepe"
     ],
-    "employees": [
+    "employee": [
         "Rhys",
         "Jennis",
         "Jennifer",

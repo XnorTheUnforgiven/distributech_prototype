@@ -26,7 +26,8 @@ Exception:
 *********************************************************************/
 DistributechCli::DistributechCli():
     _userType("UNKNOWN"),
-    _regionType("UNKNOWN")
+    _regionType("UNKNOWN"),
+    _specialUsers()
 {
     _acceptedUserTypes.push_front("customer");
     _acceptedUserTypes.push_front("employee");
@@ -82,9 +83,11 @@ Exception:
 
 *********************************************************************/
 void DistributechCli::run() {
+    std::cout << std::endl;
     std::cout << "Welcome to the Distributech machine interface!" << std::endl;
     std::cout << std::endl;
     _askForUserType();
+    _askForUserName();
     _askForRegion();
 }
 
@@ -104,7 +107,7 @@ void DistributechCli::_askForUserType() {
 
     string userType;
 
-    // Show user menu
+    // Show user type menu
     std::cout << "Which kind of user are you?"  << std::endl;
     std::cout << "For a customer user, type customer"  << std::endl;
     std::cout << "For an employee user with a key pass, type employee"  << std::endl;
@@ -112,16 +115,55 @@ void DistributechCli::_askForUserType() {
     std::cout << std::endl;
 
     // Capture user input and validate it is a known user
-    std::cin >> userType;
+    // std::cin >> userType;
 
-    for ( std::list<string>::iterator it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
-        if (*it == userType) {
-            _userType = userType;
-            break;
-        }
+    // for ( std::list<string>::iterator it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
+    //     if (*it == userType) {
+    //         _userType = userType;
+    //         break;
+    //     }
+    // }
+
+    // if (_userType == "UNKNOWN"){
+    //     std::cout << "Unknown user type, exiting program..."  << std::endl;
+    //     throw;
+    // }
+
+    std::cout << std::endl;
+
+}
+
+/********************************************************************
+Name:               _askForUserName
+
+Description:       Validate the user name matches the names for
+                    special permissions
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void DistributechCli::_askForUserName() {
+
+    string userName;
+
+    // Show user name menu
+    std::cout << "Use your keypass (aka what is your username)?"  << std::endl;
+    std::cout << std::endl;
+
+    // Capture user input and validate it is a known user
+    // std::cin >> userName;
+
+    _specialUsers.init(_userType, userName);
+    // Validates is a special user of any type, otherwise fallback to customer
+    if(!_specialUsers.isUserNameValid()){
+        _userType = "customer";
     }
 
-    if (_userType == "UNKNOWN"){
+    if (userName == "UNKNOWN"){
         std::cout << "Unknown user type, exiting program..."  << std::endl;
         throw;
     }

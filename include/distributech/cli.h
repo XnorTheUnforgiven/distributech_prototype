@@ -12,6 +12,8 @@ Last edit:          21-02-2020
 #include <string>
 #include <list>
 
+#include "include\distributech\specialUsers.h"
+
 using std::string;
 using std::list;
 
@@ -28,12 +30,15 @@ class DistributechCli
     private:
 
         void _askForUserType();
+        void _askForUserName();
         void _askForRegion();
 
         list<string> _acceptedUserTypes;
         list<string> _acceptedRegionTypes;
         string _userType;
         string _regionType;
+
+        DistributechSpecialUsers _specialUsers;
 
         // Customer specific
         void _displayItemSelection();
