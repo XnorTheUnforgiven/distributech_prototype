@@ -54,6 +54,7 @@ The list of accepted technician user names who can have free coffees can be foun
 These are the documented remaining tasks to have a project minimally worthy of being released
 ### Features
 - Allow user to enter specific change coins
+- Support on Linux platform (Create CMake configuration)
 
 ### Tests
 - Setup unittests framework (GoogleTest C++ would be a good idea)
@@ -66,3 +67,4 @@ These are the documented remaining tasks to have a project minimally worthy of b
 - Display row and columns numbers to items display
 - Move CLI code intelligence into separate functions
 - Fragment code in clearer methods and classes
+- Make CLI less ugly and clunky
