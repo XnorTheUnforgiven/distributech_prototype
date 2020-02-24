@@ -29,7 +29,7 @@ You can run it with this command in a prompt:
 `Distributech.exe`
 You should see a similar prompt:
 
-![Prompt entry](https://github.com/XnorTheUnforgiven/distributech_prototype/blob/first-draft/images/PromptEntry.png)
+![Default entry](https://github.com/XnorTheUnforgiven/distributech_prototype/blob/first-draft/images/DefaultEntry.png)
 
 ### Customer entry
 If the user who enters the prompt is a customer, the example below should explain how the CLI works overall:
