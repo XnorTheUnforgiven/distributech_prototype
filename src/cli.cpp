@@ -101,15 +101,18 @@ void Cli::run() {
     _askForUserName();
 
     if(_userType == "technician") {
-
+        _askToEnableDistribution();
+        _askToResetMachine();
     }
-    else {
+    else if (_distributech.getVendorEnable()) {
         _askForRegion();
         _displayItems();
         _askForUserSelection();
         _payForItem();
     }
-
+    else {
+       std::cout << "Machine is under maintenance. Come back again later!" << std::endl; 
+    }
 }
 
 /********************************************************************
@@ -353,4 +356,81 @@ void Cli::_payForItem() {
     std::cout << "Enjoy your " << _selectedItemInRow << "!" << std::endl;
     std::cout << std::endl;
 
+}
+
+/********************************************************************
+Name:               _askToEnableDistribution
+
+Description:        Ask the technician to disable/enable the machine
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void Cli::_askToEnableDistribution() {
+
+    string enable;
+
+    std::cout << "Do you wish to enable/disable the vendor machine for tests?"  << std::endl;
+    std::cout << "Type enable or disable:"  << std::endl;
+    std::cout << std::endl;
+
+    // Capture technician input and enable/disable the machine accordingly
+    std::cin >> enable;
+    std::cout << std::endl;
+
+    if (!(enable == "enable" || enable == "disable")) {
+        std::cout << "Wrong user input!"  << std::endl;
+        throw;
+    }
+    
+    if(enable == "enable"){
+        _distributech.setVendorEnable(true);
+        std::cout << "Vendor sucessfully enabled!"  << std::endl;
+    }
+    else if (enable == "disable") {
+        _distributech.setVendorEnable(false);
+        std::cout << "Vendor sucessfully disabled!"  << std::endl;
+    }
+
+    std::cout << std::endl;
+}
+
+/********************************************************************
+Name:               _askToResetMachine
+
+Description:        Ask the technician to reset the machine
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void Cli::_askToResetMachine() {
+
+    string enable;
+
+    std::cout << "Do you wish to reset the vendor machine? (y/n)"  << std::endl;
+    std::cout << std::endl;
+
+    // Capture technician input and reset or not the machine accordingly
+    std::cin >> enable;
+    std::cout << std::endl;
+
+    if (!(enable == "y" || enable == "n")) {
+        std::cout << "Wrong user input!"  << std::endl;
+        throw;
+    }
+    
+    if(enable == "y"){
+        _distributech.resetMachine();
+        std::cout << "Machine sucessfully reset"  << std::endl;
+    }
+
+    std::cout << std::endl;
 }

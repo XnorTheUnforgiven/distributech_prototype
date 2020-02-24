@@ -23,9 +23,7 @@ using json = nlohmann::json;
 using std::find;
 using std::to_string;
 
-// Debug path
-// const string Distributech::_europeItemsFilePath = "doc/europe_items.json";
-// Release path
+const string Distributech::_moneyFilePath = "..\\doc\\machine_money.json";
 const string Distributech::_statusFilePath = "..\\doc\\machine_status.json";
 
 /********************************************************************
@@ -238,6 +236,63 @@ void Distributech::resetMachine()
 }
 
 /********************************************************************
+Name:               setVendorEnable
+
+Description:        Enable/disable the vendor machine
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void Distributech::setVendorEnable(bool enable)
+{
+    ofstream outputFile;
+    json status;
+
+    // Set price value display at 2 decimals
+    std::cout << std::fixed << std::setprecision(2);
+
+    outputFile.open(_statusFilePath);
+
+    status["vendorEnabled"] = enable;
+    outputFile << status;
+
+    outputFile.close();
+}
+
+/********************************************************************
+Name:               getVendorEnable
+
+Description:        Get the machine enabling status
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+bool Distributech::getVendorEnable()
+{
+    ifstream inputFile;
+    inputFile.open(_statusFilePath);
+
+    if (!inputFile.is_open()){
+        throw;
+    }
+
+    json inputJsonData;
+    inputFile >> inputJsonData;
+
+    inputFile.close();
+
+    return inputJsonData["vendorEnabled"];
+}
+
+/********************************************************************
 Name:               _setRemainingMoney
 
 Description:        Set the machine remaining money
@@ -257,10 +312,9 @@ void Distributech::_setRemainingMoney(float money)
     // Set price value display at 2 decimals
     std::cout << std::fixed << std::setprecision(2);
 
-    outputFile.open(_statusFilePath);
+    outputFile.open(_moneyFilePath);
 
     status["remainingMoney"] = money;
-    //status["vendorEnabled"] = _getVendorEnabled();
     outputFile << status;
 
     outputFile.close();
@@ -281,7 +335,7 @@ Exception:
 float Distributech::_getRemainingMoney()
 {
     ifstream inputFile;
-    inputFile.open(_statusFilePath);
+    inputFile.open(_moneyFilePath);
 
     if (!inputFile.is_open()){
         throw;
@@ -293,64 +347,6 @@ float Distributech::_getRemainingMoney()
     inputFile.close();
 
     return inputJsonData["remainingMoney"];
-}
-
-/********************************************************************
-Name:               _setVendorEnabled
-
-Description:        Enable/disable the vendor machine
-
-Args:         
-
-Returns:
-
-Exception:
-
-*********************************************************************/
-void Distributech::_setVendorEnabled(bool enable)
-{
-    ofstream outputFile;
-    json status;
-
-    // Set price value display at 2 decimals
-    std::cout << std::fixed << std::setprecision(2);
-
-    outputFile.open(_statusFilePath);
-
-    //status["vendorEnabled"] = enable;
-    status["remainingMoney"] = _getRemainingMoney();
-    outputFile << status;
-
-    outputFile.close();
-}
-
-/********************************************************************
-Name:               _getVendorEnabled
-
-Description:        Get the vendor machine enabling status
-
-Args:         
-
-Returns:
-
-Exception:
-
-*********************************************************************/
-bool Distributech::_getVendorEnabled()
-{
-    ifstream inputFile;
-    inputFile.open(_statusFilePath);
-
-    if (!inputFile.is_open()){
-        throw;
-    }
-
-    json inputJsonData;
-    inputFile >> inputJsonData;
-
-    inputFile.close();
-
-    return inputJsonData["vendorEnabled"];
 }
 
 /********************************************************************
