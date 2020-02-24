@@ -34,6 +34,7 @@ class Distributech
         void displayItemPrice(unsigned row, string itemName);
         void addItemToRemainingMoney();
         float returnChange(float change);
+        void resetMachine();
 
     private:
         const static string _statusFilePath;
@@ -46,6 +47,8 @@ class Distributech
 
         void _setRemainingMoney(float money);
         float _getRemainingMoney();
+        void _setVendorEnabled(bool enable);
+        bool _getVendorEnabled();
         string _regionToCurrency(string region);
 };
 

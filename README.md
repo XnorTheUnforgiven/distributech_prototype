@@ -40,3 +40,4 @@ These are the documented remaining tasks to have a project minimally worthy of b
 - Add a robust error handling mechanism
 - Display row and columns numbers to items display
 - Move CLI code intelligence into separate functions
+- Fragment code in clearer methods and classes

@@ -96,12 +96,20 @@ void Cli::run() {
     std::cout << std::endl;
     std::cout << "Welcome to the Distributech machine interface!" << std::endl;
     std::cout << std::endl;
+
     _askForUserType();
     _askForUserName();
-    _askForRegion();
-    _displayItems();
-    _askForUserSelection();
-    _payForItem();
+
+    if(_userType == "technician") {
+
+    }
+    else {
+        _askForRegion();
+        _displayItems();
+        _askForUserSelection();
+        _payForItem();
+    }
+
 }
 
 /********************************************************************
@@ -242,8 +250,6 @@ void Cli::_displayItems() {
     std::cout << "Displaying the machine's items!"  << std::endl;
     std::cout << std::endl;
 
-    _regionType = "eu";
-
     if (_regionType == "eu") {
         _distributech.loadData(_europeItemsFilePath, _regionType);
     }
@@ -289,10 +295,6 @@ void Cli::_askForUserSelection() {
 
     _selectedRow = selection.substr(0, selection.find(delimiter));
     _selectedItemInRow = selection.erase(0, selection.find(delimiter) + delimiter.length());
-
-    _distributech.displayItemPrice(stoul(_selectedRow) - 1, _selectedItemInRow);
-
-    std::cout << std::endl;
 }
 
 /********************************************************************
@@ -311,43 +313,44 @@ void Cli::_payForItem() {
 
     string givenChangeStr;
     float givenChange;
-    float changeDifference;
-    float currentlyPaidChange;
+    float changeDifference = 0.0;
+    float currentlyPaidChange = 0.0;
 
-    std::cout << std::endl;
-    std::cout << "Enter your change:"  << std::endl;
-    std::cout << "Example: 3.00"  << std::endl;
-    std::cout << " for a 2.55USD item"  << std::endl;
-    std::cout << std::endl;
+    // skip payment if employee and item is coffee
+    if (!(_userType == "employee" && _selectedItemInRow == "coffee")) {
 
-    //Loop until customer has given at least the item amount of change
-    currentlyPaidChange = 0.0;
-    while(1) {
-        std::cin >> givenChangeStr;
-
+        _distributech.displayItemPrice(stoul(_selectedRow) - 1, _selectedItemInRow);
+        std::cout << "Enter your change:"  << std::endl;
+        std::cout << "Example: 3.00 for a 2.55USD item"  << std::endl;
         std::cout << std::endl;
 
-        givenChange = stof(givenChangeStr);
-        changeDifference = _distributech.returnChange(givenChange) + currentlyPaidChange;
+        //Loop until customer has given at least the item amount of change
+        while(1) {
+            std::cin >> givenChangeStr;
 
-        if((changeDifference) >= 0.0) {
-            _distributech.addItemToRemainingMoney();
-            break;
+            std::cout << std::endl;
+
+            givenChange = stof(givenChangeStr);
+            changeDifference = _distributech.returnChange(givenChange) + currentlyPaidChange;
+
+            if(changeDifference >= 0.0) {
+                _distributech.addItemToRemainingMoney();
+                break;
+            }
+            else{
+                currentlyPaidChange = currentlyPaidChange + givenChange;
+                std::cout << "Missing " << -1.0 * changeDifference << " to buy the item!" << std::endl;
+                std::cout << "Enter the remaining change:"  << std::endl;
+                std::cout << std::endl;
+            }
         }
-        else{
-            currentlyPaidChange = currentlyPaidChange + givenChange;
-            std::cout << "Missing " << -1.0 * changeDifference << " to buy the item!" << std::endl;
-            std::cout << "Enter the remaining change:"  << std::endl;
+
+        if(changeDifference > 0.0) {
+            std::cout << "Returning " << changeDifference << " spare change!" << std::endl;
             std::cout << std::endl;
         }
     }
-
     std::cout << "Enjoy your " << _selectedItemInRow << "!" << std::endl;
     std::cout << std::endl;
 
-    if(changeDifference > 0.0) {
-        std::cout << "Returning " << changeDifference << " spare change!" << std::endl;
-    }
-
-    std::cout << std::endl;
 }
