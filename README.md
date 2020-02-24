@@ -5,9 +5,9 @@ This project is command line interactive interface trying to emulate the functio
 It has the following main features:
 - Customisable item inventory
 - Region based item inventory
-- Varaible user restriction based user type
+- Variable user restriction based user type
 
-As of now, the project can only be used on Windows, but since it is a CMake based project, it can easily be built on Linux as well if deemed necessary.
+As of now, the project can only be used on Windows, but since it is a CMake based project, it can easily be built on Linux as well. Only need to test with other build tools.
 
 ## Building the project
 This section explains how to build the project, from setuping the environment to building the executable.
@@ -16,7 +16,7 @@ Use the following tutorial to setup your developer environment:
 
 https://www.40tude.fr/blog/compile-cpp-code-with-vscode-cmake-nmake/
 
-Once that is done, clone the repository and checkout the master branch
+Once that is done, clone the repository and checkout the master branch.
 ### Build
 Once your environment is properly setuped, you can enter the following shortcuts to build the project:
 - Press ctrl-p
@@ -24,7 +24,7 @@ Once your environment is properly setuped, you can enter the following shortcuts
 `>CMake: Build`
 
 ## How to use
-Once the project is build, the CLI executable can be found in the generated "build" folder
+Once the project is built, the CLI executable can be found in the generated "build" folder
 You can run it with this command in a prompt: 
 `Distributech.exe`
 You should see a similar prompt:
