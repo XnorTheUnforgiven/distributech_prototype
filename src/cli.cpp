@@ -68,13 +68,14 @@ void Cli::run() {
     std::cout << std::endl;
 
     _askForUserType();
-    _askForUserName();
 
     if(_userType == "technician") {
+        _askForUserName();
         _askToEnableDistribution();
         _askToResetMachine();
     }
     else if (_distributech.getVendorEnable()) {
+        _askForUserName();
         _askForRegion();
         _displayItems();
         _askForUserSelection();
