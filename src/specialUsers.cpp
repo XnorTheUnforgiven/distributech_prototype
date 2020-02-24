@@ -127,6 +127,8 @@ const bool SpecialUsers::isUserNameValid()
 
     }
 
+    inputFile.close();
+
     return userNameIsValid;
 
 }

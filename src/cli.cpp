@@ -101,6 +101,7 @@ void Cli::run() {
     _askForRegion();
     _displayItems();
     _askForUserSelection();
+    _payForItem();
 }
 
 /********************************************************************
@@ -121,8 +122,8 @@ void Cli::_askForUserType() {
 
     std::cout << "Which kind of user are you?"  << std::endl;
     std::cout << "For a customer user, type customer"  << std::endl;
-    std::cout << "For an employee user with a key pass, type employee"  << std::endl;
-    std::cout << "For an technician user with a key pass, type technician"  << std::endl;
+    std::cout << "For an employee user with a NFC badge, type employee"  << std::endl;
+    std::cout << "For an technician user with a NFC badge, type technician"  << std::endl;
     std::cout << std::endl;
 
     // Capture user input and validate it is a known user
@@ -286,12 +287,67 @@ void Cli::_askForUserSelection() {
 
     std::cout << std::endl;
 
-    //selection = "1-chaiLatte";
-
     _selectedRow = selection.substr(0, selection.find(delimiter));
     _selectedItemInRow = selection.erase(0, selection.find(delimiter) + delimiter.length());
 
     _distributech.displayItemPrice(stoul(_selectedRow) - 1, _selectedItemInRow);
+
+    std::cout << std::endl;
+}
+
+/********************************************************************
+Name:               _payForItem
+
+Description:        
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void Cli::_payForItem() {
+
+    string givenChangeStr;
+    float givenChange;
+    float changeDifference;
+    float currentlyPaidChange;
+
+    std::cout << std::endl;
+    std::cout << "Enter your change:"  << std::endl;
+    std::cout << "Example: 3.00"  << std::endl;
+    std::cout << " for a 2.55USD item"  << std::endl;
+    std::cout << std::endl;
+
+    //Loop until customer has given at least the item amount of change
+    currentlyPaidChange = 0.0;
+    while(1) {
+        std::cin >> givenChangeStr;
+
+        std::cout << std::endl;
+
+        givenChange = stof(givenChangeStr);
+        changeDifference = _distributech.returnChange(givenChange) + currentlyPaidChange;
+
+        if((changeDifference) >= 0.0) {
+            _distributech.addItemToRemainingMoney();
+            break;
+        }
+        else{
+            currentlyPaidChange = currentlyPaidChange + givenChange;
+            std::cout << "Missing " << -1.0 * changeDifference << " to buy the item!" << std::endl;
+            std::cout << "Enter the remaining change:"  << std::endl;
+            std::cout << std::endl;
+        }
+    }
+
+    std::cout << "Enjoy your " << _selectedItemInRow << "!" << std::endl;
+    std::cout << std::endl;
+
+    if(changeDifference > 0.0) {
+        std::cout << "Returning " << changeDifference << " spare change!" << std::endl;
+    }
 
     std::cout << std::endl;
 }

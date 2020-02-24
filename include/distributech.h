@@ -32,14 +32,20 @@ class Distributech
         void loadData(const string itemsFilePath, string region);
         void displayItems();
         void displayItemPrice(unsigned row, string itemName);
+        void addItemToRemainingMoney();
+        float returnChange(float change);
 
     private:
+        const static string _statusFilePath;
+
         const static string _itemsFilePath;
         Items _items;
         string _currency;
         string _selectedItem;
         float _selectedItemPrice;
 
+        void _setRemainingMoney(float money);
+        float _getRemainingMoney();
         string _regionToCurrency(string region);
 };
 

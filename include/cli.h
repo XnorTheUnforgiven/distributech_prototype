@@ -37,6 +37,7 @@ class Cli
         void _askForRegion();
         void _displayItems();
         void _askForUserSelection();
+        void _payForItem();
 
         list<string> _acceptedUserTypes;
         list<string> _acceptedRegionTypes;

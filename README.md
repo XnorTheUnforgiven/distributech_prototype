@@ -13,7 +13,9 @@ As of now, the project can only be used on Windows, but since it is a CMake base
 This section explains how to build the project, from setuping the environment to building the executable.
 ### Setuping the environment
 Use the following tutorial to setup your developer environment:
+
 https://www.40tude.fr/blog/compile-cpp-code-with-vscode-cmake-nmake/
+
 Once that is done, clone the distributech_prototype repository 
 ### Build
 Once your environment is properly setuped, you can enter the following shortcuts to build the project:
@@ -24,3 +26,17 @@ Once your environment is properly setuped, you can enter the following shortcuts
 ## How to use
 
 ## Remaining tasks
+These are the documented remaining tasks to have a project minimally worthy of being released
+### Features
+- Allow user to enter specific change coins
+
+### Tests
+- Setup unittests framework (GoogleTest C++ would be a good idea)
+- Implement unittests
+- Setup integration tests framework (Python with Pytest would be the more efficient solution)
+- Implement integration tests
+
+### Improvements
+- Add a robust error handling mechanism
+- Display row and columns numbers to items display
+- Move CLI code intelligence into separate functions

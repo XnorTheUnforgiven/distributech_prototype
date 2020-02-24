@@ -17,10 +17,16 @@ Last edit:          21-02-2020
 
 using std::string;
 using std::ifstream;
+using std::ofstream;
 using json = nlohmann::json;
 
 using std::find;
 using std::to_string;
+
+// Debug path
+// const string Distributech::_europeItemsFilePath = "doc/europe_items.json";
+// Release path
+const string Distributech::_statusFilePath = "..\\doc\\machine_status.json";
 
 /********************************************************************
 Name:       
@@ -108,6 +114,8 @@ void Distributech::loadData(const string itemsFilePath, const string region)
     }
 
     _currency = _regionToCurrency(region);
+
+    inputFile.close();
 }
 
 /********************************************************************
@@ -173,6 +181,97 @@ void Distributech::displayItemPrice(unsigned row, string itemName)
     _selectedItemPrice = itemsRow.at(itemName);
 
     std::cout << "Insert " << _selectedItemPrice << _currency << " to receive the item!" << std::endl;
+}
+
+/********************************************************************
+Name:               addItemToRemainingMoney
+
+Description:        Add the item price to the machine remaining money
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void Distributech::addItemToRemainingMoney()
+{
+    float currentRemainingMoney;
+
+    currentRemainingMoney = _getRemainingMoney();
+    _setRemainingMoney(currentRemainingMoney + _selectedItemPrice);
+}
+
+/********************************************************************
+Name:               returnChange
+
+Description:        Return overpaid change for the item
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+float Distributech::returnChange(float change)
+{
+    return change - _selectedItemPrice;
+}
+
+/********************************************************************
+Name:               setRemainingMoney
+
+Description:        Set the machine remaining money
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+void Distributech::_setRemainingMoney(float money)
+{
+    ofstream outputFile;
+    json status;
+
+    outputFile.open(_statusFilePath);
+
+    status["remainingMoney"] = money;
+    outputFile << status;
+
+    outputFile.close();
+}
+
+/********************************************************************
+Name:               setRemainingMoney
+
+Description:        Set the machine remaining money
+
+Args:         
+
+Returns:
+
+Exception:
+
+*********************************************************************/
+float Distributech::_getRemainingMoney()
+{
+    ifstream inputFile;
+    inputFile.open(_statusFilePath);
+
+    if (!inputFile.is_open()){
+        throw;
+    }
+
+    json inputJsonData;
+    inputFile >> inputJsonData;
+
+    inputFile.close();
+
+    return inputJsonData["remainingMoney"];
 }
 
 /********************************************************************
