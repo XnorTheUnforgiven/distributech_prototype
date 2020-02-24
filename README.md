@@ -18,7 +18,7 @@ https://www.40tude.fr/blog/compile-cpp-code-with-vscode-cmake-nmake/
 
 Once that is done, clone the repository and checkout the master branch.
 ### Build
-Once your environment is properly setuped, you can enter the following shortcuts to build the project:
+Once your environment is properly setuped, you can enter the following shortcuts to build the project in VSCode:
 - Press ctrl-p
 - Enter the following command: 
 `>CMake: Build`
