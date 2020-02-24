@@ -16,14 +16,39 @@ Use the following tutorial to setup your developer environment:
 
 https://www.40tude.fr/blog/compile-cpp-code-with-vscode-cmake-nmake/
 
-Once that is done, clone the distributech_prototype repository 
+Once that is done, clone the repository and checkout the master branch
 ### Build
 Once your environment is properly setuped, you can enter the following shortcuts to build the project:
 - Press ctrl-p
-- Enter the following command
+- Enter the following command: 
 `>CMake: Build`
 
 ## How to use
+Once the project is build, the CLI executable can be found in the generated "build" folder
+You can run it with this command in a prompt: 
+`Distributech.exe`
+You should see a similar prompt:
+
+![Prompt entry](https://github.com/XnorTheUnforgiven/distributech_prototype/blob/first-draft/images/PromptEntry.png)
+
+### Customer entry
+If the user who enters the prompt is a customer, the example below should explain how the CLI works overall:
+
+![Customer entry](https://github.com/XnorTheUnforgiven/distributech_prototype/blob/first-draft/images/CustomerEntry.png)
+
+### Employee entry
+If the user who enters the prompt is an employee, the example below should explain how the CLI works overall:
+
+![Employee entry](https://github.com/XnorTheUnforgiven/distributech_prototype/blob/first-draft/images/EmployeeEntry.png)
+
+The list of accepted employee user names who can have free coffees can be found in doc/special_users.json
+
+### Technician entry
+If the user who enters the prompt is a technician, the example below should explain how the CLI works overall:
+
+![Technician entry](https://github.com/XnorTheUnforgiven/distributech_prototype/blob/first-draft/images/TechnicianEntry.png)
+
+The list of accepted technician user names who can have free coffees can be found in doc/special_users.json
 
 ## Remaining tasks
 These are the documented remaining tasks to have a project minimally worthy of being released
