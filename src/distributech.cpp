@@ -27,15 +27,7 @@ const string Distributech::_moneyFilePath = "..\\doc\\machine_money.json";
 const string Distributech::_statusFilePath = "..\\doc\\machine_status.json";
 
 /********************************************************************
-Name:       
-
 Description:        Constructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 Distributech::Distributech()
@@ -43,15 +35,7 @@ Distributech::Distributech()
 }
 
 /********************************************************************
-Name:       
-
 Description:        Destructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 Distributech::~Distributech()
@@ -59,15 +43,7 @@ Distributech::~Distributech()
 }
 
 /********************************************************************
-Name:       
-
 Description:        Copy Constructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 Distributech::Distributech(const Distributech &ref)
@@ -79,11 +55,13 @@ Name:               loadData
 
 Description:        Loads the machine data into usable structures
 
-Args:         
-
-Returns:
-
-Exception:
+Args:               itemsFilePath (const str):
+                        Path of the file containing items
+                        displayed in the machine
+                    
+                    region (const str):
+                        Region in which the distributech machine
+                        is being deployed
 
 *********************************************************************/
 void Distributech::loadData(const string itemsFilePath, const string region)
@@ -121,12 +99,6 @@ Name:               displayItems
 
 Description:        Displays available machine items
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Distributech::displayItems()
 {
@@ -156,14 +128,14 @@ Name:               getItemPriceStr
 Description:        Get the price of a specific item with currency
                     in a string format
 
-Args:         
+Args:               row (unsigned):
+                        Row number onto which the item is displayed
 
-Returns:
-
-Exception:
+                    itemName (string):
+                        Name of the item that has been selected
 
 *********************************************************************/
-void Distributech::displayItemPrice(unsigned row, string itemName)
+void Distributech::displayItemPrice(const unsigned row, const string itemName)
 {
     _selectedItem = itemName;
 
@@ -186,34 +158,25 @@ Name:               addItemToRemainingMoney
 
 Description:        Add the item price to the machine remaining money
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Distributech::addItemToRemainingMoney()
 {
-    float currentRemainingMoney;
-
-    currentRemainingMoney = _getRemainingMoney();
-    _setRemainingMoney(currentRemainingMoney + _selectedItemPrice);
+    _setRemainingMoney(_getRemainingMoney() + _selectedItemPrice);
 }
 
 /********************************************************************
 Name:               returnChange
 
-Description:        Return overpaid change for the item
+Description:        Return surplus change difference for the item
 
-Args:         
+Args:               Change (float):
+                        Change the user gave to the machine to pay
+                        for the item
 
-Returns:
-
-Exception:
+Returns:            (float): Surplus change difference 
 
 *********************************************************************/
-float Distributech::returnChange(float change)
+float Distributech::returnChange(const float change)
 {
     return change - _selectedItemPrice;
 }
@@ -221,13 +184,7 @@ float Distributech::returnChange(float change)
 /********************************************************************
 Name:               resetMachine
 
-Description:        Reset the machine change
-
-Args:         
-
-Returns:
-
-Exception:
+Description:        Reset the machine change value to 100.0
 
 *********************************************************************/
 void Distributech::resetMachine()
@@ -240,14 +197,11 @@ Name:               setVendorEnable
 
 Description:        Enable/disable the vendor machine
 
-Args:         
-
-Returns:
-
-Exception:
+Args:               enable(bool):
+                        Status to enable/disable the vendor machine
 
 *********************************************************************/
-void Distributech::setVendorEnable(bool enable)
+void Distributech::setVendorEnable(const bool enable)
 {
     ofstream outputFile;
     json status;
@@ -268,11 +222,7 @@ Name:               getVendorEnable
 
 Description:        Get the machine enabling status
 
-Args:         
-
-Returns:
-
-Exception:
+Returns:            (bool): machine enabling status
 
 *********************************************************************/
 bool Distributech::getVendorEnable()
@@ -297,14 +247,11 @@ Name:               _setRemainingMoney
 
 Description:        Set the machine remaining money
 
-Args:         
-
-Returns:
-
-Exception:
+Args:               money (float):
+                        Vendor machine remaining money to be set to
 
 *********************************************************************/
-void Distributech::_setRemainingMoney(float money)
+void Distributech::_setRemainingMoney(const float money)
 {
     ofstream outputFile;
     json status;
@@ -325,11 +272,7 @@ Name:               _getRemainingMoney
 
 Description:        Get the machine remaining money
 
-Args:         
-
-Returns:
-
-Exception:
+Returns:            (float): vendor machine remaining money
 
 *********************************************************************/
 float Distributech::_getRemainingMoney()
@@ -355,14 +298,16 @@ Name:               _regionToCurrency
 Description:        Converts the region to the used currency and 
                     returns the associated currency
 
-Args:         
+Args:               region (const str):
+                        Region in which the distributech machine
+                        is being deployed 
 
 Returns:
 
 Exception:
 
 *********************************************************************/
-string Distributech::_regionToCurrency(string region)
+string Distributech::_regionToCurrency(const string region)
 {
     if (region == "eu"){
         return "EU";

@@ -39,10 +39,6 @@ class Cli
         void _askForUserSelection();
         void _payForItem();
 
-        // Technician with access card specific
-        void _askToEnableDistribution();
-        void _askToResetMachine();
-
         list<string> _acceptedUserTypes;
         list<string> _acceptedRegionTypes;
         string _userType;
@@ -53,6 +49,9 @@ class Cli
         SpecialUsers _specialUsers;
         Distributech _distributech;
 
+        // Technician with access card specific
+        void _askToEnableDistribution();
+        void _askToResetMachine();
 };
 
 #endif

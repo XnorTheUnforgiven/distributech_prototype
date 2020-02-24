@@ -29,13 +29,13 @@ class Distributech
         ~Distributech();
         Distributech(const Distributech &ref);
 
-        void loadData(const string itemsFilePath, string region);
+        void loadData(const string itemsFilePath, const string region);
         void displayItems();
-        void displayItemPrice(unsigned row, string itemName);
+        void displayItemPrice(const unsigned row, const string itemName);
         void addItemToRemainingMoney();
-        float returnChange(float change);
+        float returnChange(const float change);
 
-        void setVendorEnable(bool enable);
+        void setVendorEnable(const bool enable);
         bool getVendorEnable();
         void resetMachine();
 
@@ -49,9 +49,9 @@ class Distributech
         string _selectedItem;
         float _selectedItemPrice;
 
-        void _setRemainingMoney(float money);
+        void _setRemainingMoney(const float money);
         float _getRemainingMoney();
-        string _regionToCurrency(string region);
+        string _regionToCurrency(const string region);
 };
 
 #endif

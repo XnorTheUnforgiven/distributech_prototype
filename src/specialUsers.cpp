@@ -21,15 +21,7 @@ using json = nlohmann::json;
 const string SpecialUsers::_usersFilePath = "..\\doc\\special_users.json";
 
 /********************************************************************
-Name:       
-
 Description:        Constructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 SpecialUsers::SpecialUsers()
@@ -37,15 +29,7 @@ SpecialUsers::SpecialUsers()
 }
 
 /********************************************************************
-Name:       
-
 Description:        Constructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 SpecialUsers::~SpecialUsers()
@@ -53,15 +37,7 @@ SpecialUsers::~SpecialUsers()
 }
 
 /********************************************************************
-Name:       
-
 Description:        Copy Constructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 SpecialUsers::SpecialUsers(const SpecialUsers &ref)
@@ -69,34 +45,29 @@ SpecialUsers::SpecialUsers(const SpecialUsers &ref)
 }
 
 /********************************************************************
-Name:               Initialise the class with known user type and name
-
 Description:        Constructor
 
-Args:         
-
-Returns:
-
-Exception:
+Args:               userType(const string):
+                        Type of user trying to access to the machine
+                    userName(const string):
+                        UserName of the user trying to access to the
+                         machine
 
 *********************************************************************/
-void SpecialUsers::init(string userType, string userName)
+void SpecialUsers::init(const string userType, const string userName)
 {
     _userType = userType;
     _userName = userName;
 }
 
 /********************************************************************
-Name:               Validates the user name and user types given are
+Name:               isUserNameValid
+
+Description:        Validates the user name and user types given are
                      valid according to specialUsers config 
 
-Description:        Constructor
-
-Args:         
-
-Returns:
-
-Exception:
+Returns:            (bool) whether the userName is valid according
+                     to the userType selected
 
 *********************************************************************/
 const bool SpecialUsers::isUserNameValid()

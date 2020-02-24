@@ -21,10 +21,7 @@ class SpecialUsers
         ~SpecialUsers();
         SpecialUsers(const SpecialUsers &ref);
 
-        bool isEmployee(string user);
-        bool isTechnician(string user);
-
-        void init(string userType, string userName);
+        void init(const string userType, const string userName);
         const bool isUserNameValid();
 
     private:

@@ -15,23 +15,12 @@ Last edit:          21-02-2020
 using std::string;
 using std::stoul;
 
-// Debug paths
-// const string Cli::_europeItemsFilePath = "doc/europe_items.json";
-// const string Cli::_northAmericaItemsFilePath = "doc/north_america_items.json";
-// Release paths
 const string Cli::_europeItemsFilePath = "..\\doc\\europe_items.json";
 const string Cli::_northAmericaItemsFilePath = "..\\doc\\north_america_items.json";
 
 /********************************************************************
-Name:       
 
 Description:        Constructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 Cli::Cli():
@@ -49,15 +38,8 @@ Cli::Cli():
 }
 
 /********************************************************************
-Name:       
 
 Description:        Constructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 Cli::~Cli()
@@ -65,15 +47,8 @@ Cli::~Cli()
 }
 
 /********************************************************************
-Name:       
 
 Description:        Copy Constructor
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 Cli::Cli(const Cli &ref)
@@ -85,14 +60,9 @@ Name:               run
 
 Description:        Run the command line interface
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Cli::run() {
+
     std::cout << std::endl;
     std::cout << "Welcome to the Distributech machine interface!" << std::endl;
     std::cout << std::endl;
@@ -120,16 +90,11 @@ Name:               _askForUserType
 
 Description:        Determine the user type
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Cli::_askForUserType() {
 
     string userType;
+    std::list<string>::iterator it;
 
     std::cout << "Which kind of user are you?"  << std::endl;
     std::cout << "For a customer user, type customer"  << std::endl;
@@ -139,7 +104,7 @@ void Cli::_askForUserType() {
 
     // Capture user input and validate it is a known user
     std::cin >> userType;
-    for ( std::list<string>::iterator it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
+    for (it = _acceptedUserTypes.begin(); it != _acceptedUserTypes.end(); ++it){
         if (*it == userType) {
             _userType = userType;
             break;
@@ -150,9 +115,7 @@ void Cli::_askForUserType() {
         std::cout << "Unknown user type, exiting program..."  << std::endl;
         throw;
     }
-
     std::cout << std::endl;
-
 }
 
 /********************************************************************
@@ -161,19 +124,13 @@ Name:               _askForUserName
 Description:       Validate the user name matches the names for
                     special permissions
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Cli::_askForUserName() {
 
+     string userName;
+
     // Skip if customer user
     if (_userType != "customer") {
-
-        string userName;
 
         std::cout << "Use your keypass (aka what is your username)?"  << std::endl;
         std::cout << std::endl;
@@ -204,16 +161,11 @@ Name:               _askForRegion
 
 Description:        Determine the region type
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Cli::_askForRegion() {
 
     string regionType;
+    std::list<string>::iterator it;
 
     std::cout << "Which region is the Distributech machine from?"  << std::endl;
     std::cout << "Type either eu (for Europe), can (for Canada) or us (for United-States)"  << std::endl;
@@ -221,7 +173,7 @@ void Cli::_askForRegion() {
 
     // Capture user input and validate it is a known user
     std::cin >> regionType;
-    for ( std::list<string>::iterator it = _acceptedRegionTypes.begin(); it != _acceptedRegionTypes.end(); ++it){
+    for (it = _acceptedRegionTypes.begin(); it != _acceptedRegionTypes.end(); ++it){
         if (*it == regionType) {
             _regionType = regionType;
             break;
@@ -242,14 +194,9 @@ Name:               _displayItems
 Description:        Show the displayed items of the region specific
                     distributech machine
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Cli::_displayItems() {
+
     std::cout << "Displaying the machine's items!"  << std::endl;
     std::cout << std::endl;
 
@@ -264,7 +211,6 @@ void Cli::_displayItems() {
     }
 
     _distributech.displayItems();
-
 }
 
 /********************************************************************
@@ -272,12 +218,6 @@ Name:               _askForUserSelection
 
 Description:        Show the displayed items of the region specific
                     distributech machine
-
-Args:         
-
-Returns:
-
-Exception:
 
 *********************************************************************/
 void Cli::_askForUserSelection() {
@@ -303,13 +243,7 @@ void Cli::_askForUserSelection() {
 /********************************************************************
 Name:               _payForItem
 
-Description:        
-
-Args:         
-
-Returns:
-
-Exception:
+Description:        User payment input for the item
 
 *********************************************************************/
 void Cli::_payForItem() {
@@ -363,12 +297,6 @@ Name:               _askToEnableDistribution
 
 Description:        Ask the technician to disable/enable the machine
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Cli::_askToEnableDistribution() {
 
@@ -404,30 +332,24 @@ Name:               _askToResetMachine
 
 Description:        Ask the technician to reset the machine
 
-Args:         
-
-Returns:
-
-Exception:
-
 *********************************************************************/
 void Cli::_askToResetMachine() {
 
-    string enable;
+    string reset;
 
     std::cout << "Do you wish to reset the vendor machine? (y/n)"  << std::endl;
     std::cout << std::endl;
 
     // Capture technician input and reset or not the machine accordingly
-    std::cin >> enable;
+    std::cin >> reset;
     std::cout << std::endl;
 
-    if (!(enable == "y" || enable == "n")) {
+    if (!(reset == "y" || reset == "n")) {
         std::cout << "Wrong user input!"  << std::endl;
         throw;
     }
     
-    if(enable == "y"){
+    if(reset == "y"){
         _distributech.resetMachine();
         std::cout << "Machine sucessfully reset"  << std::endl;
     }
